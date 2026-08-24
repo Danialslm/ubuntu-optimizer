@@ -3,8 +3,9 @@
 ## This Bash script automates the optimization of your Linux server.
 #### Notes:
  1. This script is designed for execution on Linux server environments, including VPS, VDS, Dedicated, and Bare Metal systems. It is not recommended for use on Linux desktop environments.
- 2. Modifying the kernel (options 1 and 2) may result in removing or resetting some GPU drivers.
- 3. Some VMs do not support kernel changes (options 1 and 2). Installing XanMod could cause the VM to break. Please be cautious and test beforehand.
+ 2. Modifying the kernel (option 3) may result in removing or resetting some GPU drivers.
+ 3. Some VMs do not support kernel changes (option 3). Installing XanMod could cause the VM to break. Please be cautious and test beforehand.
+ 4. Every menu option does one task. Enter several of them at once, separated by commas: `1,3,5`
 
 ### It performs the following tasks:
        
@@ -83,6 +84,23 @@
     - Open Ports `SSH`, `80`, `443`.
     - With `IPv6`, `TCP` & `UDP`.
 
+
+12. Install the Latest `Nginx` from the official repository:
+    - Adds the `nginx.org` repository and pins it over the distro packages.
+    - More Details: https://nginx.org/en/linux_packages.html
+
+
+13. Install `Docker` & `Docker Compose` from the official repository:
+    - `docker-ce`, `docker-ce-cli`, `containerd.io`, `docker-buildx-plugin`, `docker-compose-plugin`.
+    - More Details: https://docs.docker.com/engine/install/ubuntu
+
+
+14. Install `PasarGuard Node`:
+    - Runs the official installer _(interactive)_.
+    - Downloads the `Xray` assets to `/var/lib/pg-node/assets` and mounts them into the container.
+    - Shows the Certificate & the API Key at the end.
+    - More Details: https://github.com/PasarGuard/scripts
+
     
 **Reboot at the end is recommended.**
 
@@ -102,7 +120,7 @@ sudo dnf up -y && sudo dnf install -y sudo wget
 
 
 ## Run
-#### **Tested on:** Ubuntu 20+, Debian 11+, CentOS Stream 8+, AlmaLinux 8+, Fedora 37+
+#### **Tested on:** Ubuntu 20+
 
 #### Root Access is Required. If the user is not root, first run:
 ```
@@ -110,7 +128,17 @@ sudo -i
 ```
 #### Then:
 ```
-wget "https://raw.githubusercontent.com/hawshemi/Linux-Optimizer/main/linux-optimizer.sh" -O linux-optimizer.sh && chmod +x linux-optimizer.sh && bash linux-optimizer.sh 
+wget "https://raw.githubusercontent.com/hawshemi/Linux-Optimizer/main/ubuntu-optimizer.sh" -O ubuntu-optimizer.sh && chmod +x ubuntu-optimizer.sh && bash ubuntu-optimizer.sh 
+```
+
+#### Choosing the options:
+Each option runs a single task. Enter one option, or several separated by commas, and they run in the order given:
+```
+Enter Your Choice(s): 1,3,5
+```
+For a full optimization, enter:
+```
+Enter Your Choice(s): 1,2,3,4,5,6,7,8,9
 ```
 
 
